@@ -10,14 +10,17 @@
         <table class="table table-hover">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Author</th>
               <th scope="col">Read?</th>
+              <th scope="col">Option</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(book, index) in books" :key="index">
+              <td>{{ index + 1 }}</td>
               <td>{{ book.title }}</td>
               <td>{{ book.author }}</td>
               <td>
@@ -250,7 +253,9 @@ export default {
         });
     },
     onDeleteBook(book) {
-      this.removeBook(book.id);
+      if (confirm('确定删除？')) {
+        this.removeBook(book.id);
+      }
     },
   },
   created() {
